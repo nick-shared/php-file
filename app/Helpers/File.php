@@ -16,6 +16,16 @@ class File
         return $file;
     }
 
+    public function lock()
+    {
+        //TBI
+    }
+
+    public function unlock()
+    {
+        //TBI
+    }
+
     public function getMimeType()
     {
         return FH::getMimeType($this->path);
@@ -24,5 +34,20 @@ class File
     public function getExtension()
     {
         return FH::getExtension($this->path);
+    }
+
+    public function write(string $text)
+    {
+        return FH::writeToFile($this->handle, $text);
+    }
+
+    public function close()
+    {
+
+    }
+
+    public function append(string $text)
+    {
+        return FH::appendToFile($this->handle, $text);
     }
 }

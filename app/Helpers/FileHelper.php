@@ -35,6 +35,16 @@ class FileHelper
         return false;
     }
 
+    public static function lockFile($handle)
+    {
+        flock($handle, LOCK_EX);
+    }
+
+    public static function unlockFile($handle)
+    {
+        flock($handle, LOCK_UN);
+    }
+
     public static function createFile(string $path, string $perms = "w")
     {
         return fopen($path, $perms);
@@ -69,14 +79,15 @@ class FileHelper
         return fclose($handle);
     }
 
-    public static function writeFile($handle)
+    public static function writeToFile($handle, string $text)
     {
-
+        return fwrite($handle, $text);
     }
 
-    public static function appendFile($handle)
+    public static function appendToFile($handle, string $text)
     {
-
+        fwrite($handle, "\n");
+        return fwrite($handle, $text);
     }
 
     public static function getMimeType(string $filename)
