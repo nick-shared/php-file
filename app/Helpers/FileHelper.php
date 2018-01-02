@@ -41,7 +41,7 @@ class FileHelper
 
     public static function lockFile($handle)
     {
-        if ($handle) {
+        if (is_resource ($handle)) {
             return flock($handle, LOCK_EX);
         }
         return false;
@@ -49,13 +49,13 @@ class FileHelper
 
     public static function unlockFile($handle)
     {
-        if ($handle) {
+        if (is_resource ($handle)) {
             return flock($handle, LOCK_UN);
         }
         return false;
     }
 
-    public static function createFile(string $path, string $perms = "w")
+    public static function createFile(string $path, string $perms = "rw")
     {
         return fopen($path, $perms);
     }
@@ -75,7 +75,7 @@ class FileHelper
     }
 
 
-    public static function openFile(string $path, string $perms = "a")
+    public static function openFile(string $path, string $perms = "ra")
     {
         if (self::fileExists($path)) {
             return fopen($path, $perms);
@@ -85,7 +85,7 @@ class FileHelper
 
     public static function closeFile($handle)
     {
-        if ($handle) {
+        if (is_resource ($handle)) {
             return fclose($handle);
         }
         return false;
@@ -93,7 +93,7 @@ class FileHelper
 
     public static function writeToFile($handle, string $text)
     {
-        if ($handle) {
+        if (is_resource ($handle)) {
             return fwrite($handle, $text);
         }
         return false;
@@ -101,7 +101,7 @@ class FileHelper
 
     public static function appendToFile($handle, string $text, string $newline_characters="\n")
     {
-        if ($handle) {
+        if (is_resource ($handle)) {
             fwrite($handle, $newline_characters);
             return fwrite($handle, $text);
         }
