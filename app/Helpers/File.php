@@ -7,12 +7,14 @@ class File
 {
     public $path;
     public $handle;
+    public $cursor_location;
 
     public static function init(string $path)
     {
         $file = new self;
         $file->handle = FH::createOrOpenFile($path);
         $file->path = $path;
+        $file->cursor_location = ftell($file->handle);
         return $file;
     }
 
@@ -47,8 +49,7 @@ class File
             $this->unlock();
             FH::closeFile($this->handle);
             $this->handle = null;
-        }
-        catch (\Throwable $e){
+        } catch (\Throwable $e) {
             throw $e;
         }
         return true;
