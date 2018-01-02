@@ -12,7 +12,7 @@ class FileHelper
      * Awesome discussion here on various ways to create a directory in php:
      * https://stackoverflow.com/questions/2303372/create-a-folder-if-it-doesnt-already-exist
      * (I didn't like the accepted answer because it doesnt allow creating a file and directory with the same name.
-     * as well as didn't allow setting permissions)
+     *    as well as didn't allow setting permissions)
      * @param $path
      * @param int $mode
      * @return bool
