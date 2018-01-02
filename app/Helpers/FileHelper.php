@@ -76,12 +76,16 @@ class FileHelper
 
     public static function closeFile($handle)
     {
-        return fclose($handle);
+        if ($handle) {
+            return fclose($handle);
+        }
     }
 
     public static function writeToFile($handle, string $text)
     {
-        return fwrite($handle, $text);
+        if ($handle) {
+            return fwrite($handle, $text);
+        }
     }
 
     public static function appendToFile($handle, string $text)
@@ -115,6 +119,9 @@ class FileHelper
 
     public static function deleteFile(string $path)
     {
-        return unlink($path);
+        if (self::fileExists($path)) {
+            return unlink($path);
+        }
+        return false;
     }
 }
