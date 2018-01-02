@@ -1,5 +1,5 @@
 <?php
-namespace Mutant\Http\App\Helpers;
+namespace Mutant\File\App\Helpers;
 
 class FileHelper
 {
