@@ -10,8 +10,9 @@ Shared File helper functions
 
 
 
+#### General Notes
 
-#### File Modes
+1. File Modes
 ```
 r	Read only mode, with the file pointer at the start of the file.
 r+	Read/Write mode, with the file pointer at the start of the file.
@@ -23,8 +24,8 @@ x	Create and open for writing only. If the file exists already, it returns FALSE
 x+	Create and open for reading and writing. If the file exists already, it returns FALSE and generates an error. If file doesn’t exist, a new file is created.
 ```
 
-#### General Php file notes
- fopen() is used to open a file if it exists or it creates a file if it doesn’t exist.
-    if the fopen() function fails to create a file or open a file, it returns 0 (zero).
- fclose() used to close an open file
-    fclose() function returns true on success and false on failure
+2. Raw php file functions
+ * fopen() is used to open a file if it exists or it creates a file if it doesn’t exist.
+    * if the fopen() function fails to create a file or open a file, it returns 0 (zero).
+ * fclose() used to close an open file
+    * fclose() function returns true on success and false on failure
