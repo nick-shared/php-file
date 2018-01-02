@@ -66,7 +66,7 @@ class FileHelper
     }
 
 
-    public static function openFile(string $path, string $perms = "w")
+    public static function openFile(string $path, string $perms = "a")
     {
         if (self::fileExists($path)) {
             return fopen($path, $perms);

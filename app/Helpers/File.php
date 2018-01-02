@@ -59,7 +59,6 @@ class File
         return FH::appendToFile($this->handle, $text);
     }
 
-
     function __destruct()
     {
         $this->unlock();
