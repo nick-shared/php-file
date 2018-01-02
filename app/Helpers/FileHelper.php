@@ -1,10 +1,6 @@
 <?php
 namespace Mutant\Http\App\Helpers;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Promise;
-use Mutant\String\App\Helpers\StringHelper;
-
 class FileHelper
 {
     /**
