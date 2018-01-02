@@ -43,11 +43,26 @@ class File
 
     public function close()
     {
-        return FH::closeFile($this->handle);
+        try {
+            $this->unlock();
+            FH::closeFile($this->handle);
+            $this->handle = null;
+        }
+        catch (\Throwable $e){
+            throw $e;
+        }
+        return true;
     }
 
     public function append(string $text)
     {
         return FH::appendToFile($this->handle, $text);
+    }
+
+
+    function __destruct()
+    {
+        $this->unlock();
+        $this->close();
     }
 }
