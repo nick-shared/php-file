@@ -22,13 +22,17 @@ class FileHelper
 
     public static function directoryExists(string $path)
     {
-        return is_dir($path);
+        if (is_dir($path) && is_readable($path)) {
+            return true;
+        }
+
+        return false;
     }
 
 
     public static function fileExists(string $path)
     {
-        if (file_exists($path)) {
+        if (is_file($path) && is_readable($path)) {
             return true;
         }
 
@@ -58,7 +62,6 @@ class FileHelper
 
     /**
      * Opens a file or creates a new file if the file doesnt exist.
-     * (Note: I am aware that fopen does this same function but I feel like this DSL is more readable)
      * @param string $path
      * @return mixed
      */
@@ -96,10 +99,10 @@ class FileHelper
         return false;
     }
 
-    public static function appendToFile($handle, string $text)
+    public static function appendToFile($handle, string $text, string $newline_characters="\n")
     {
         if ($handle) {
-            fwrite($handle, "\n");
+            fwrite($handle, $newline_characters);
             return fwrite($handle, $text);
         }
         return false;
