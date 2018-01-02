@@ -86,15 +86,10 @@ class FileHelper
         $extension = self::getExtension($filename);
 
         if (!$extension) {
-            return false;
+            return null;
         }
 
-        $mimetype = $mimes->getMimeType($extension);
-
-        if ($mimetype) {
-            return $mimetype;
-        }
-        return false;
+        return $mimes->getMimeType($extension);
     }
 
     public static function getExtension(string $filename)
@@ -104,7 +99,7 @@ class FileHelper
         if (sizeof($temp) > 1) {
             return end($temp);
         }
-        return false;
+        return null;
     }
 
     public static function deleteFile(string $path)
