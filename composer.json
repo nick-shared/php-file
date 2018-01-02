@@ -12,7 +12,8 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "mutant/string" : "dev-master"
+    "mutant/string" : "dev-master",
+    "ralouphie/mimey": "^1.0"
   },
   "autoload": {
     "psr-4": {
