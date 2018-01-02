@@ -84,6 +84,7 @@ class FileHelper
         $mimes = new MimeTypes;
 
         $extension = self::getExtension($filename);
+
         if (!$extension) {
             return false;
         }
@@ -98,7 +99,8 @@ class FileHelper
 
     public static function getExtension(string $filename)
     {
-        $temp = explode(".", $filename);
+        $temp = trim($filename, "."); //trim any dots from beginning or end
+        $temp = explode(".", $temp);
         if (sizeof($temp) > 1) {
             return end($temp);
         }
