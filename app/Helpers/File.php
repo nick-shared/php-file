@@ -43,7 +43,7 @@ class File
 
     public function close()
     {
-
+        return FH::closeFile($this->handle);
     }
 
     public function append(string $text)
