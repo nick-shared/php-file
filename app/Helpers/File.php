@@ -28,12 +28,12 @@ class File extends \SplFileObject
     public function appendAndReturn(string $text)
     {
         if (!$this->eof()) {
-            $current_location = $this->ftell();
+            $current_location = $this->getLineNumber();
             $this->goToEndOfFile();
         }
         $this->fwrite($this->newlinechar);
         $this->fwrite($text);
-        $this->fseek($current_location);
+        $this->goToLine($current_location);
     }
 
     /**
@@ -73,8 +73,16 @@ class File extends \SplFileObject
      * Gets current line data and advances the cursor to next line
      * @return string
      */
-    public function getLineData(){
+    public function getLineDataAndAdvance(){
         return $this->fgets();
+    }
+
+
+    /**
+     * Returns the current line data and doesnt advance the cursor
+     */
+    public function getLineDataAndStay(){
+        return $this->current();
     }
 
     /**
