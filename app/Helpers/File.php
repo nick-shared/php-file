@@ -79,13 +79,18 @@ class File extends \SplFileObject
 
     /**
      * Gets the max number of lines in a file.
-     * Cool way to do it:
+     * (Note: the file is zero based so this returns the last line number plus one)
+     * Note may be performance intensive as has to traverse file twice:
+     *  once to the end and once back to current position.
      * http://php.net/manual/en/splfileobject.seek.php#121666
      * @return int
      */
     public function getTotalLineNumbers(){
-       $this->seek(PHP_INT_MAX);
-       return $this->key() + 1;
+        $currentline = $this->getLineNumber();
+        $this->goToEndOfFile();
+        $max = $this->key() + 1;
+        $this->seek($currentline);
+        return $max;
     }
 
     /**
@@ -122,7 +127,6 @@ class File extends \SplFileObject
      */
     public function goToEndOfFile()
     {
-        $finalline = $this->getTotalLineNumbers();
-        $this->seek($finalline);
+       $this->seek(PHP_INT_MAX);
     }
 }
