@@ -7,6 +7,9 @@ namespace Mutant\File\App\Helpers;
  *
  * http://php.net/manual/en/class.splfileobject.php
  * https://github.com/php/php-src/blob/master/ext/spl/internal/splfileobject.inc
+ *
+ *
+ * Note: The usage of $this->fseek throws off the line counting/tracking.
  */
 class File extends \SplFileObject
 {
