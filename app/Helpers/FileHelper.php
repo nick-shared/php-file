@@ -55,9 +55,9 @@ class FileHelper
         return false;
     }
 
-    public static function createFile(string $path, string $perms = "rw")
+    public static function createFile(string $path, string $flags = "a+")
     {
-        return fopen($path, $perms);
+        return fopen($path, $flags);
     }
 
     /**
@@ -75,10 +75,10 @@ class FileHelper
     }
 
 
-    public static function openFile(string $path, string $perms = "ra")
+    public static function openFile(string $path, string $flags = "a+")
     {
         if (self::fileExists($path)) {
-            return fopen($path, $perms);
+            return fopen($path, $flags);
         }
         return false;
     }
@@ -108,6 +108,19 @@ class FileHelper
         return false;
     }
 
+    /**
+     * Note: Theres a built in PHP way
+     * $info = new finfo(FILEINFO_MIME_TYPE);
+     * echo $info->file('myImage.jpg');
+     * https://www.inanimatt.com/php-files.html
+     *
+     * However, it doesn't return null on failure it returns: inode/x-empty
+     * Need to make sure this is the same return on every OS because windows doesnt use inodes.
+     * Basically, this needs more testing
+     *
+     * @param string $filename
+     * @return null|string
+     */
     public static function getMimeType(string $filename)
     {
         $mimes = new MimeTypes;
