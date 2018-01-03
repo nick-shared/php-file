@@ -47,7 +47,7 @@ class File extends \SplFileObject
         }
         $this->fwrite($this->newlinechar);
         $this->fwrite($text);
-        $this->next(); // fwrite doesn't advance the cursor so this moves the cursor up
+        $this->goToEndOfFile(); // fwrite doesn't advance the cursor so this moves the cursor up
     }
 
 
