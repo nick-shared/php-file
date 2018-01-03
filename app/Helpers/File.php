@@ -5,6 +5,7 @@ namespace Mutant\File\App\Helpers;
  * Class File
  * @package Mutant\File\App\Helpers
  *
+ * http://php.net/manual/en/class.splfileobject.php
  * https://github.com/php/php-src/blob/master/ext/spl/internal/splfileobject.inc
  */
 class File extends \SplFileObject
@@ -107,6 +108,8 @@ class File extends \SplFileObject
      * fseek(0, SEEK_END) doesn't go to EOF like it theoretically seems like it should.
      * It goes to the second to last line.
      * There can be a line or two remaining for some reason I have yet to explore, so iterate through those.
+     * Basically, this needs more testing
+     *
      * http://php.net/manual/en/function.fseek.php
      */
     public function goToEndOfFile()

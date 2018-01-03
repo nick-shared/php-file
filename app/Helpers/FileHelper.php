@@ -109,7 +109,7 @@ class FileHelper
     }
 
     /**
-     * Note: Theres a built in PHP way
+     * Note: theres a built in PHP way
      * $info = new finfo(FILEINFO_MIME_TYPE);
      * echo $info->file('myImage.jpg');
      * https://www.inanimatt.com/php-files.html
