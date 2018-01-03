@@ -1,6 +1,8 @@
 <?php
 namespace Mutant\File\App\Helpers;
 
+use Mutant\String\App\Helpers\StringHelper as StrHelper;
+
 /**
  * Class File
  * @package Mutant\File\App\Helpers
@@ -74,16 +76,22 @@ class File extends \SplFileObject
      * Gets current line data and advances the cursor to next line
      * @return string
      */
-    public function getLineDataAndAdvance(){
-        return $this->fgets();
+    public function getLineDataAndAdvance()
+    {
+        $line_data = $this->fgets();
+        $line_data = StrHelper::removeAll($this->newlinechar, $line_data);
+        return $line_data;
     }
 
 
     /**
      * Returns the current line data and doesnt advance the cursor
      */
-    public function getLineDataAndStay(){
-        return $this->current();
+    public function getLineDataAndStay()
+    {
+        $line_data = $this->current();
+        $line_data = StrHelper::removeAll($this->newlinechar, $line_data);
+        return $line_data;
     }
 
     /**
@@ -94,7 +102,8 @@ class File extends \SplFileObject
      * http://php.net/manual/en/splfileobject.seek.php#121666
      * @return int
      */
-    public function getTotalLineNumbers(){
+    public function getTotalLineNumbers()
+    {
         $currentline = $this->getLineNumber();
         $this->goToEndOfFile();
         $max = $this->key();
@@ -127,7 +136,8 @@ class File extends \SplFileObject
     /**
      * Goes to the beginning of a file
      */
-    public function goToBeginningOfFile(){
+    public function goToBeginningOfFile()
+    {
         $this->rewind();
     }
 
@@ -136,6 +146,6 @@ class File extends \SplFileObject
      */
     public function goToEndOfFile()
     {
-       $this->seek(PHP_INT_MAX);
+        $this->seek(PHP_INT_MAX);
     }
 }

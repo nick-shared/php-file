@@ -20,6 +20,11 @@ class FileHelper
         return self::directoryExists($path) || mkdir($path, $mode, true);
     }
 
+    /**
+     * Tests if directory exists
+     * @param string $path
+     * @return bool
+     */
     public static function directoryExists(string $path)
     {
         if (is_dir($path) && is_readable($path)) {
@@ -30,6 +35,11 @@ class FileHelper
     }
 
 
+    /**
+     * Tests if a file exists
+     * @param string $path
+     * @return bool
+     */
     public static function fileExists(string $path)
     {
         if (is_file($path) && is_readable($path)) {
@@ -39,6 +49,11 @@ class FileHelper
         return false;
     }
 
+    /**
+     * Locks a file (not tested yet)
+     * @param $handle
+     * @return bool
+     */
     public static function lockFile($handle)
     {
         if (is_resource ($handle)) {
@@ -47,6 +62,11 @@ class FileHelper
         return false;
     }
 
+    /**
+     * UnLocks a file (not tested yet)
+     * @param $handle
+     * @return bool
+     */
     public static function unlockFile($handle)
     {
         if (is_resource ($handle)) {
