@@ -39,10 +39,10 @@ class File extends \SplFileObject
     }
 
     /**
-     * Appends to a file and leaves the cursor at the end of the file
+     * Appends to a file and adances the cursor the end of the file
      * @param string $text
      */
-    public function appendAndStay(string $text)
+    public function appendAndAdvance(string $text)
     {
         if (!$this->eof()) {
             $this->goToEndOfFile();
@@ -73,7 +73,7 @@ class File extends \SplFileObject
     }
 
     /**
-     * Gets current line data and advances the cursor to next line
+     * Reads current line data and advances the cursor to next line
      * @return string
      */
     public function getLineDataAndAdvance()
@@ -85,7 +85,7 @@ class File extends \SplFileObject
 
 
     /**
-     * Returns the current line data and doesnt advance the cursor
+     * Reads the current line data and doesn't advance the cursor
      */
     public function getLineDataAndStay()
     {
