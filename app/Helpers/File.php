@@ -61,7 +61,7 @@ class File extends \SplFileObject
      * Returns the line number of the current cursor location(zero based)
      * @return string
      */
-    public function getCurrentLineNumber()
+    public function getLineNumber()
     {
         return $this->key();
     }
@@ -70,15 +70,26 @@ class File extends \SplFileObject
      * Gets current line data and advances the cursor to next line
      * @return string
      */
-    public function getCurrentLine(){
+    public function getLineData(){
         return $this->fgets();
+    }
+
+    /**
+     * Gets the max number of lines in a file.
+     * Cool way to do it:
+     * http://php.net/manual/en/splfileobject.seek.php#121666
+     * @return int
+     */
+    public function getTotalLineNumbers(){
+       $this->seek(PHP_INT_MAX);
+       return $this->key() + 1;
     }
 
     /**
      * Gets the character at the current cursor location
      * @return string
      */
-    public function getCurrentCharacter()
+    public function getCharacter()
     {
         return $this->fgetc();
     }
@@ -104,21 +115,11 @@ class File extends \SplFileObject
     }
 
     /**
-     * Note: Theres some weirdness here.
-     * fseek(0, SEEK_END) doesn't go to EOF like it theoretically seems like it should.
-     * It goes to the second to last line.
-     * There can be a line or two remaining for some reason I have yet to explore, so iterate through those.
-     * Basically, this needs more testing
-     *
      * http://php.net/manual/en/function.fseek.php
      */
     public function goToEndOfFile()
     {
-        $this->fseek(0, SEEK_END);
-        // Note: for some reason this doesnt go to the end of the file so have to finish the remaining line or two with loop
-
-        while (!$this->eof()) {
-            $this->fgets();
-        }
+        $finalline = $this->getTotalLineNumbers();
+        $this->seek($finalline);
     }
 }
